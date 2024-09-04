@@ -88,8 +88,14 @@ const editRecette = (recette) => {
 onMounted(() => {
   if (store.currentIndex !== null && store.currentIndex >= 0 && store.currentIndex < store.recettes.length) {
     editRecette(store.recettes[store.currentIndex]);
+  } else {
+    resetForm(); // Réinitialiser le formulaire si c'est pour ajouter une nouvelle recette
   }
 });
+
+
+
+
 
 watch(() => store.currentIndex, (newIndex) => {
   if (newIndex !== null && newIndex >= 0 && newIndex < store.recettes.length) {

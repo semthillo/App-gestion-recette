@@ -16,10 +16,12 @@
     </div>
   </div>
   <div class="container">
-    <router-link class="btn btn-info mt-3 mb-4" to="/add-recette">Ajouter une nouvelle recette</router-link>
+     
+  <div class="container">
+    <router-link class="btn btn-info mt-3 mb-4" to="/add-recette" @click="resetForm">Ajouter une nouvelle recette</router-link>
     <h3>Liste de mes recettes :</h3>
     <div class="row mt-3">
-      <div class="col-md-4 mb-4" v-for="(recette, index) in store.recettes" :key="index">
+      <div class="col mb-4 ml-2" v-for="(recette, index) in store.recettes" :key="index">
         <div class="card" style="width: 18rem;">
           <img :src="recette.image" class="card-img-top" />
           <div class="card-body">
@@ -32,7 +34,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    
     <div class="modal-overlay" v-if="selectedRecette">
       <div class="modal-content">
         <div class="modal-header">
@@ -58,6 +60,8 @@
       </div>
     </div>
   </div>
+  </div>
+ 
 </template>
 
 <script setup>
@@ -98,9 +102,17 @@ const destroy = () => {
     router.push("/list-recette");
   }
 };
+
+const resetForm = () => {
+  store.setCurrentRecetteIndex(null);
+};
+
 </script>
 
 <style scoped>
+.container{
+  margin: auto;
+}
    .carousel-item img{
   height: 200px;
 }
@@ -144,6 +156,7 @@ const destroy = () => {
 
 .modal-body {
   padding: 1rem 0;
+  
 }
 
 .modal-footer {
